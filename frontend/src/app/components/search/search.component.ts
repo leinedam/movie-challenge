@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -8,21 +9,25 @@ import { MovieService } from '../../services/movie.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchStr: string;
-  searchRes: Array<Object>;
+  public searchStr: string;
+  public searchRes: Array<Object>;
 
-  constructor(private movieService : MovieService) { }
+  constructor(
+    private movieService : MovieService,
+    private router: Router) { 
+    }
 
   ngOnInit() {
-     this.getMovies();
+
+      this.getMovies();
   }
 
-  getMovies(){
+  getMovies(): void{
     this.movieService.getMovies()
     .subscribe(
       (res) => {
-        console.log(res);
         this.movieService.movies =  res['results'];
+        console.log(res);
         this.searchStr = "";
       },
       (err) =>{
@@ -31,7 +36,7 @@ export class SearchComponent implements OnInit {
     )
   }
 
-  searchMovies(){
+  searchMovies(): void{
     if (this.searchStr == "" || this.searchStr == undefined || this.searchStr == null)
     {
         return
@@ -39,8 +44,8 @@ export class SearchComponent implements OnInit {
     this.movieService.searchMovies(this.searchStr)
     .subscribe(
       (res) => {
-        console.log(res);
         this.movieService.movies = res['results'];
+        this.router.navigateByUrl('/');
       },
       (err) =>{
         console.error(err, 'errr');

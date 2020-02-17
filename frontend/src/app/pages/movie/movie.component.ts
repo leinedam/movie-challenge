@@ -9,8 +9,8 @@ import { MovieService } from '../../services/movie.service';
 })
 export class MovieComponent implements OnInit {
 
-  id: string;
-  movie : Array<Object> = [];
+  public id: string;
+  public movie : Array<Object> = [];
 
   constructor(private route: ActivatedRoute,
     private movieService : MovieService) { 
@@ -21,7 +21,7 @@ export class MovieComponent implements OnInit {
     this.getMovie();
   }
 
-  getMovie(){
+  getMovie(): void{
     this.movieService.getMovie(this.id)
     .subscribe(
       (res) => {

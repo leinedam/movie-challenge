@@ -1,21 +1,28 @@
  <!-- Page Content -->
- <div class="container">
-    <div class="row m-b-10">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">{{ movie.title}}</h1>
-      </div>
+  <div class="row m-b-10">
+    <div class="col-lg-12 text-center">
+      <h1 class="mt-5">{{ movie.title}}</h1>
+      <h3 class="mt-5 text-secondary">{{ movie.tagline}}</h3>
+
     </div>
-   <hr>
-    <div class="row">
-        <div class="col-md-6 ">
-                <img *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
-            </div>
-            <div class="col-md-6 ">
-                <div class="media-body  p-10">
-                    <h5 class="mt-10">{{ movie.title  }}</h5>
-                    {{ movie.overview  }} 
-                </div>
-                <a class="btn btn-primary" routerLink="/">Atras</a>
-            </div>
-        </div>
+  </div>
+  <hr>
+  <div class="row">
+      <div class="col-sm-12 col-md-6 ">
+          <img *ngIf="movie.poster_path"  src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
+      </div>
+      <div class="col-sm-12 col-md-6 ">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-success"><strong>Popularity</strong> {{ movie.popularity }}</li>
+            <li class="list-group-item list-group-item-dark"><strong>Vote Avegare</strong> {{ movie.vote_average }}</li>
+            <li class="list-group-item list-group-item-warning"><strong>Vote Count</strong> {{ movie.vote_count }}</li>
+          </ul>
+          <hr>
+          <p> {{ movie.overview  }} </p> 
+          <p> <strong>Release Date:</strong> {{ movie.release_date}}</p>
+          <strong>Genres: </strong>
+          <span *ngFor='let genre of movie.genres;let i = index'> {{ genre.name }}<span *ngIf='(i + 2) <= movie.genres.length '>, </span></span>
+          <hr>
+          <a class="btn btn-primary" routerLink="/">Back</a>
+      </div>
   </div>

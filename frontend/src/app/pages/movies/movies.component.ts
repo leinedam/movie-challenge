@@ -8,6 +8,7 @@ import { MovieService } from '../../services/movie.service';
 })
 export class MoviesComponent implements OnInit {
 
+  title = 'Movies App';
   constructor(private movieService : MovieService) { }
 
   ngOnInit() {

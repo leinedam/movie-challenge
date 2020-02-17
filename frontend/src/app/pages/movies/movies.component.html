@@ -1,22 +1,20 @@
  <!-- Page Content -->
- <div class="container">
    <div class="row">
      <div class="col-lg-12 text-center">
-       <h1 class="mt-5 mb-5">Movies</h1>
-       <h2 *ngIf="!movieService.movies.length"> Sin Resultados</h2>
+       <h1 class="mt-5 mb-5">{{ title }}</h1>
+       <h2 *ngIf="!movieService.movies.length"> No Results</h2>
      </div>
    </div>
 
    <div class="row">
-     <div class="col-md-3 mt-10" *ngFor='let movie of movieService.movies'>
+     <div class="col-lg-3 col-md-4 col-sm-12 mt-10" *ngFor='let movie of movieService.movies'>
         <div class="card " >
-            <img class="card-img-top" *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
+            <img class="card-img-top" routerLink="/movie/{{movie.id}}" *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
             <div class="card-body">
               <h5 class="card-title">{{ movie.title | slice:0:17 }}</h5>
               <p class="card-text">{{ movie.overview | slice:0:120 }} ...</p> 
-              <a class="btn btn-primary" routerLink="/movie/{{movie.id}}">ver mas</a>
+              <a class="btn btn-primary" routerLink="/movie/{{movie.id}}">View More</a>
             </div>
           </div>
      </div>
    </div>
- </div>

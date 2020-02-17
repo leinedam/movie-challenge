@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
 
-  movies : Array<Object>  = [];
+  public movies : Array<Object>  = [];
   readonly apiUrl = environment.backendUrl + '/api/movies';
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<any>{
+  getMovies(): Observable<Object>{
      return this.http.get(this.apiUrl);
   }
 
@@ -22,8 +22,8 @@ export class MovieService {
     return this.http.get(this.apiUrl + '/' + id);
   }
 
-  searchMovies(searchStr:string): Observable<any>{
-    return this.http.get(this.apiUrl + '/search/' + searchStr);
+  searchMovies(searchStr:string): Observable<Object>{
+    return this.http.get(this.apiUrl + '/search/' + searchStr );
   }
 
 }

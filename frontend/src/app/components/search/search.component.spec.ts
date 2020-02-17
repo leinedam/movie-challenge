@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
@@ -8,7 +11,14 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent ],
+      imports: [
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        RouterModule.forRoot([]),
+      ],
     })
     .compileComponents();
   }));
@@ -22,4 +32,5 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
