@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment'
 
 
 @Injectable({
@@ -7,34 +8,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
 
-  readonly URL = 'http://api.themoviedb.org/3/discover/movie?api_key=';
-  readonly apikey: string;
   movies = [];
 
+  readonly apiUrl = environment.backendUrl + '/api/movies';
 
-  constructor(private http: HttpClient) { 
-
-    this.apikey = 'a07f3928ffd867dcacc134577ac1a0c2';
-
-  }
-
-
+  constructor(private http: HttpClient) { }
 
   getMovies(){
 
-     return this.http.get(this.URL +   this.apikey  + '&sort_by=popularity.desc');
+     return this.http.get(this.apiUrl);
 
   }
 
   getMovie(id:string){
 
-    return this.http.get('https://api.themoviedb.org/3/movie/'+id+'?api_key='+this.apikey);
+    return this.http.get(this.apiUrl + '/' + id);
         
   }
 
   searchMovies(searchStr:string){
 
-    return this.http.get('https://api.themoviedb.org/3/search/movie?query='+searchStr+'&sort_by=popularity.desc&api_key='+this.apikey);
+    return this.http.get(this.apiUrl + '/search/' + searchStr);
   
   }
 

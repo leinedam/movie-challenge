@@ -2,35 +2,41 @@
 const movieController = {};
 const url = 'https://api.themoviedb.org/3/';
 const apikey = 'a07f3928ffd867dcacc134577ac1a0c2';
-
- 
-var requests = require('requests');
+const axios = require('axios');
 
 movieController.getMovies = async (req , res) => {
-    requests(url + 'trending/movie/week?api_key=' + apikey)
-    .on('data', function (chunk) {
-      res.json(chunk); 
+    await axios.get(url + 'trending/movie/week?api_key=' + apikey)
+    .then(response => {
+      res.json(response.data); 
     })
-    .on('end', function (err) {
-      if (err) 
-      return console.log('connection closed due to errors', err);
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+movieController.getMovie = async (req, res) => {
+    const id  = req.params.id;
+    await axios.get(url + 'movie/' + id + '?api_key=' + apikey)
+    .then(response => {
+      res.json(response.data); 
+    })
+    .catch(error => {
+      console.log(error);
     });
 };
 
 
-movieController.getMovie = (req, res) => {
 
-    const id  = req.params.id;
+movieController.searchMovie =  (req, res) => {
+    const searchStr  = req.params.searchStr;
 
-    requests(url + 'movie/'+ id +'?api_key='+ apikey)
-    .on('data', function (chunk) {
-      res.json(chunk); 
+    axios.get(url + 'search/movie?query=' + searchStr + '&sort_by=popularity.desc&api_key=' + apikey)
+    .then(response => {
+        res.json(response.data); 
     })
-    .on('end', function (err) {
-      if (err) 
-      return console.log('connection closed due to errors', err);
+    .catch(error => {
+      console.log(error);
     });
-
 };
 
 module.exports = movieController;

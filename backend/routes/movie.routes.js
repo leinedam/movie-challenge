@@ -4,6 +4,8 @@ const movieController = require('../controllers/movie.controller');
 
     router.get('/', movieController.getMovies);
     router.get('/:id', movieController.getMovie);
+    router.get('/search/:searchStr', movieController.searchMovie);
+
 
   
 
