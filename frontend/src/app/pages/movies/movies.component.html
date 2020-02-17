@@ -2,12 +2,13 @@
  <div class="container">
    <div class="row">
      <div class="col-lg-12 text-center">
-       <h1 class="mt-5">Movies</h1>
+       <h1 class="mt-5 mb-5">Movies</h1>
+       <h2 *ngIf="!movieService.movies.length"> Sin Resultados</h2>
      </div>
    </div>
 
    <div class="row">
-     <div class="col-md-3 mt-10" *ngFor='let movie of movies'>
+     <div class="col-md-3 mt-10" *ngFor='let movie of movieService.movies'>
         <div class="card " >
             <img class="card-img-top" *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
             <div class="card-body">

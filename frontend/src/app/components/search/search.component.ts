@@ -14,18 +14,43 @@ export class SearchComponent implements OnInit {
   constructor(private movieService : MovieService) { }
 
   ngOnInit() {
+     this.getMovies();
   }
 
-  searchMovies(){
-    this.movieService.searchMovies(this.searchStr)
+  getMovies(){
+    this.movieService.getMovies()
     .subscribe(
       (res) => {
-        console.log(res);
+        console.log(res['results']);
+        this.movieService.movies =  res['results'];
+        this.searchStr = "";
       },
       (err) =>{
         console.error(err, 'errr');
       }
     )
   }
+
+  searchMovies(){
+    
+    if (this.searchStr == "" || this.searchStr == undefined || this.searchStr == null)
+    {
+        return
+    }
+    this.movieService.searchMovies(this.searchStr)
+    .subscribe(
+      (res) => {
+        console.log(res);
+        this.movieService.movies = res['results'];
+      },
+      (err) =>{
+        console.error(err, 'errr');
+      }
+    )
+  }
+
+
+ 
+
 
 }

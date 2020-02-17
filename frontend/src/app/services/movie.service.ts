@@ -9,6 +9,7 @@ export class MovieService {
 
   readonly URL = 'http://api.themoviedb.org/3/discover/movie?api_key=';
   readonly apikey: string;
+  movies = [];
 
 
   constructor(private http: HttpClient) { 
@@ -26,7 +27,7 @@ export class MovieService {
   }
 
   getMovie(id:string){
-    
+
     return this.http.get('https://api.themoviedb.org/3/movie/'+id+'?api_key='+this.apikey);
         
   }
