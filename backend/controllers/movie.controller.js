@@ -27,6 +27,7 @@ movieController.getMovie = (req, res) => {
 
 movieController.searchMovie = (req, res) => {
     const searchStr  = req.params.searchStr;
+
     axios.get(url + 'search/movie?query=' + searchStr + '&sort_by=popularity.desc&api_key=' + apikey)
     .then(response => {
         res.json(response.data); 
