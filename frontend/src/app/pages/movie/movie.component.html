@@ -1,0 +1,21 @@
+ <!-- Page Content -->
+ <div class="container">
+    <div class="row m-b-10">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">{{ movie.title}}</h1>
+      </div>
+    </div>
+   <hr>
+    <div class="row">
+        <div class="col-md-6 ">
+                <img *ngIf="movie.poster_path" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}" >
+            </div>
+            <div class="col-md-6 ">
+                <div class="media-body  p-10">
+                    <h5 class="mt-10">{{ movie.title  }}</h5>
+                    {{ movie.overview  }} 
+                </div>
+                <a class="btn btn-primary" routerLink="/">Atras</a>
+            </div>
+        </div>
+  </div>
