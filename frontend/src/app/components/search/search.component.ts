@@ -9,7 +9,7 @@ import { MovieService } from '../../services/movie.service';
 export class SearchComponent implements OnInit {
 
   searchStr: string;
-  searchRes:Array<Object>;
+  searchRes: Array<Object>;
 
   constructor(private movieService : MovieService) { }
 
@@ -32,7 +32,6 @@ export class SearchComponent implements OnInit {
   }
 
   searchMovies(){
-    
     if (this.searchStr == "" || this.searchStr == undefined || this.searchStr == null)
     {
         return

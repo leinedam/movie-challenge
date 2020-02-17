@@ -18,7 +18,6 @@ app.use(express.json())
 */
 app.use('/api/movies' , require('./routes/movie.routes'));
 
-
 /*
  * Starting Server..
 */

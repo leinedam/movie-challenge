@@ -10,19 +10,15 @@ import { MovieService } from '../../services/movie.service';
 export class MovieComponent implements OnInit {
 
   id: string;
-  movie = {};
+  movie : Array<Object> = [];
 
   constructor(private route: ActivatedRoute,
     private movieService : MovieService) { 
-
     this.id = this.route.snapshot.paramMap.get("id")
-
   }
 
   ngOnInit() {
-
     this.getMovie();
-
   }
 
   getMovie(){
