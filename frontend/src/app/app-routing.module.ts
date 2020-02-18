@@ -20,6 +20,12 @@ const routes: Routes = [
       component: MovieComponent,
       data: { title: 'Movie detail' }
     },
+    
+    {
+      path: 'search/:string',
+      component: MoviesComponent,
+      data: { title: 'Movie search' }
+    },
   ];
 
 @NgModule({

@@ -23,7 +23,7 @@ export class MovieService {
   }
 
   searchMovies(searchStr:string): Observable<Object>{
-    return this.http.get(this.apiUrl + '/search/' + searchStr );
+    return this.http.get(this.apiUrl + '/search/' + searchStr  );
   }
 
 }
